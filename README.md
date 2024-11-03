@@ -14,16 +14,18 @@ This project demonstrates the design and implementation of a fully normalized re
 
 ## Database Creation
 Before creating tables, we need to set up a database for our project. In SSMS, use the following SQL command to create the database:
-below is the a screenshot of the SQL command that was used to create the database
+
+A screenshot of the SQL command I used to create the database
 ![SQL to create the Database](./images/create_database.png)
 
-below is the alt that you can copy and use
+An alt text you can copy and use.
 ```sql
-CREATE DATABASE GhanaElectionDB;
-USE GhanaElectionDB;
-```
 
-This creates the database and sets it as the active database for subsequent table creation.
+CREATE DATABASE GhanaElection2024;
+
+```
+This creates the database called `GhanaElection2024` and sets it as the active database for subsequent table creation.
+
 
 ## Database Structure
 
@@ -39,10 +41,10 @@ The database is designed with full normalization in mind and the aim to reduce r
 ### 1. Regions Table
 This table stores data about Ghana's regions, with each region assigned a unique regional ID (`region_id`).
 
-below is a screenshot of the SQL command for the creation of the regions table
+A screenshot of the SQL command I used to create the `Regions Table`
 ![Regions Table SQL command](./images/regions_table.png)
 
-below is an alt text you can copy and use.
+An alt text you can copy and use.
 
 ```sql
 CREATE TABLE Regions (
@@ -79,6 +81,10 @@ This table design serves as a foundational part of the database, as each region 
 ### 2. Constituencies Table
 This table links constituencies to regions and includes information on voter populations.
 
+A screenshot of the SQL command I used to create the `Constituencies Table`
+![Regions Table SQL command](./images/constituencies_table.png)
+
+An alt text you can copy and use.
 ```sql
 CREATE TABLE Constituencies (
     constituency_id INT PRIMARY KEY IDENTITY(1,1),
@@ -119,6 +125,10 @@ The `Constituencies` table organizes constituencies by assigning each a unique `
 ### 3. PollingStations Table
 This table organizes polling stations within constituencies, with each station assigned a code.
 
+A screenshot of the SQL command I used to create the `PollingStations Table`
+![Regions Table SQL command](./images/polling_stations.png)
+
+An alt text you can copy and use.
 ```sql
 CREATE TABLE PollingStations (
     polling_station_id INT PRIMARY KEY IDENTITY(1,1),
@@ -163,6 +173,10 @@ The `PollingStations` table organizes polling station voting data by assigning a
 ### 4. Parties Table
 This table holds information on political parties, including a column for each party’s flag image.
 
+A screenshot of the SQL command I used to create the `Parties Table`
+![Regions Table SQL command](./images/parties.png)
+
+An alt text you can copy and use.
 ```sql
 CREATE TABLE Parties (
     party_id INT PRIMARY KEY IDENTITY(1,1),
@@ -202,6 +216,10 @@ The `Parties` table is structured to hold essential details about political part
 ### 5. PresidentialCandidates Table
 This table is dedicated to presidential candidates, storing details and an image for each candidate.
 
+A screenshot of the SQL command I used to create the `PresidentialCandidates Table`
+![Regions Table SQL command](./images/presidential_candidates.png)
+
+An alt text you can copy and use.
 ```sql
 CREATE TABLE PresidentialCandidates (
     presidential_candidate_id INT PRIMARY KEY IDENTITY(1,1),
@@ -247,6 +265,10 @@ The `PresidentialCandidates` table is structured to hold crucial information abo
 ### 6. ParliamentaryCandidates Table
 This table manages parliamentary candidates, with each candidate linked to their constituency.
 
+A screenshot of the SQL command I used to create the `ParliamentaryCandidates Table`
+![Regions Table SQL command](./images/parliamentary_candidates.png)
+
+An alt text you can copy and use.
 ```sql
 CREATE TABLE ParliamentaryCandidates (
     parliamentary_candidate_id INT PRIMARY KEY IDENTITY(1,1),
@@ -299,7 +321,13 @@ The `ParliamentaryCandidates` table is structured to hold essential information 
 ### 7. Votes Tables
 These tables track votes for each candidate within each polling station.
 
+
 #### PresidentialVotes Table
+
+A screenshot of the SQL command I used to create the `PresidentialVotes Table`
+![Regions Table SQL command](./images/presidential_votes.png)
+
+An alt text you can copy and use.
 ```sql
 CREATE TABLE PresidentialVotes (
     vote_id INT PRIMARY KEY IDENTITY(1,1),
@@ -344,6 +372,10 @@ The `PresidentialVotes` table is structured to efficiently manage and record vot
 
 
 #### ParliamentaryVotes Table
+A screenshot of the SQL command I used to create the `ParliamentaryVotes Table`
+![ParliamentaryVotes Table SQL command](./images/parliamentary_votes.png)
+
+An alt text you can copy and use.
 ```sql
 CREATE TABLE ParliamentaryVotes (
     vote_id INT PRIMARY KEY IDENTITY(1,1),
@@ -386,30 +418,52 @@ CREATE TABLE ParliamentaryVotes (
 **Summary:**
 The `ParliamentaryVotes` table is structured to effectively manage and record voting results for parliamentary candidates, including unique identification, associated polling stations, candidate references, and the number of votes received. This design facilitates accurate tracking of electoral results within the election database.
 
-## Sample Queries
+## Database Diagramming 
+This structure provides a clear view of how data entities relate and interact within the Ghana Elections 2024 database.
 
-### Query: Total Votes for Each Presidential Candidate
-To retrieve the total votes for each presidential candidate:
+A screenshot of the Database Diagram showing the relationship between all tables.
+![Database Diagram image](./images/database_diagram.png)
 
-```sql
-SELECT candidate_name, SUM(votes) AS total_votes
-FROM PresidentialVotes pv
-JOIN PresidentialCandidates pc ON pv.presidential_candidate_id = pc.presidential_candidate_id
-GROUP BY candidate_name
-ORDER BY total_votes DESC;
-```
+Below are the detail explanation of the primary foreign key relationships, that was established in a database diagram in SMSS. Each relationship indicates a foreign key connection between tables and ensures that referential integrity is maintained.
 
-### Query: Total Votes in Each Constituency
-To view the total votes per constituency, you can execute the following query:
+### Foreign Key Connections
 
-```sql
-SELECT c.constituency_name, SUM(vp.votes) AS total_votes
-FROM ParliamentaryVotes vp
-JOIN PollingStations ps ON vp.polling_station_id = ps.polling_station_id
-JOIN Constituencies c ON ps.constituency_id = c.constituency_id
-GROUP BY c.constituency_name
-ORDER BY total_votes DESC;
-```
+1. **Constituencies → Regions**
+   - **Foreign Key**: `region_id`
+   - **Description**: Links each constituency to a specific region in the `Regions` table.
+
+2. **PollingStations → Constituencies**
+   - **Foreign Key**: `constituency_id`
+   - **Description**: Connects polling stations to their designated constituency in the `Constituencies` table.
+
+3. **PresidentialCandidates → Parties**
+   - **Foreign Key**: `party_id`
+   - **Description**: Associates presidential candidates with their political party in the `Parties` table.
+
+4. **ParliamentaryCandidates → Parties**
+   - **Foreign Key**: `party_id`
+   - **Description**: Links parliamentary candidates to their respective political party in the `Parties` table.
+
+5. **ParliamentaryCandidates → Constituencies**
+   - **Foreign Key**: `constituency_id`
+   - **Description**: Assigns parliamentary candidates to their specific constituency in the `Constituencies` table.
+
+6. **PresidentialVotes → PollingStations**
+   - **Foreign Key**: `polling_station_id`
+   - **Description**: Records where each presidential vote was cast, linked back to the `PollingStations` table.
+
+7. **PresidentialVotes → PresidentialCandidates**
+   - **Foreign Key**: `presidential_candidate_id`
+   - **Description**: Tracks votes for each presidential candidate, connected to the `PresidentialCandidates` table.
+
+8. **ParliamentaryVotes → PollingStations**
+   - **Foreign Key**: `polling_station_id`
+   - **Description**: Logs each parliamentary vote by polling station, linked to the `PollingStations` table.
+
+9. **ParliamentaryVotes → ParliamentaryCandidates**
+   - **Foreign Key**: `parliamentary_candidate_id`
+   - **Description**: Records votes for parliamentary candidates, associated with the `ParliamentaryCandidates` table.
+
 
 ## Conclusion
 This project provides a comprehensive example of an election database system using SSMS, covering core concepts of database normalization, efficient data structure design, and SQL implementation. This setup aims to create a robust database that serves as both an educational tool and a scalable template for real-world election databases.
