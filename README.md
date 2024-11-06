@@ -1,6 +1,6 @@
 # Ghana Election Database Project
 
-# Modelling of a Database in SMSS for the 2024 National Presidential and Parliamentary election of Ghana, 2024
+# Modelling of a Database in SMSS for the 2024 National Presidential and Parliamentary election of Ghana
 
 ## Overview
 This project demonstrates the design and implementation of a fully normalized relational database for the Ghana 2024 elections. The database is modeled to store and organize data related to regions, constituencies, polling stations, political parties, candidates, and votes. The objective is to illustrate best practices in database design, specifically normalization, within SQL Server Management Studio (SSMS).
@@ -463,6 +463,190 @@ Below are the detail explanation of the primary foreign key relationships, that 
 9. **ParliamentaryVotes → ParliamentaryCandidates**
    - **Foreign Key**: `parliamentary_candidate_id`
    - **Description**: Records votes for parliamentary candidates, associated with the `ParliamentaryCandidates` table.
+
+## Data Insertion
+
+### 1. Inserting Presidential Candidates Names and Profile Images
+
+The following SQL code inserts data into the `PresidentialCandidates` table, which stores details of each presidential candidate, including their party affiliation and profile image. Each candidate is associated with a political party, and images are stored in binary format.
+
+A screenshot of the SQL command I used to insert the data into the `presidential_candidates Table`
+![ParliamentaryVotes Table SQL command](./images/insert_presidentialcandidates_and_profilephotos.png)
+
+An alt text you can copy and use.
+```sql
+INSERT INTO PresidentialCandidates (candidate_name, party_id, candidate_image)
+VALUES 
+	
+    ('Mahamudu Bawumia', 
+     (SELECT party_id FROM Parties WHERE party_name = 'New Patriotic Party'), 
+     (SELECT * FROM OPENROWSET(BULK N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\img\flag_bearers\Bawumia.png', SINGLE_BLOB) AS Image)),
+
+    ('John Dramani Mahama', 
+     (SELECT party_id FROM Parties WHERE party_name = 'National Democratic Congress'), 
+     (SELECT * FROM OPENROWSET(BULK N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\img\flag_bearers\Mahama.png', SINGLE_BLOB) AS Image)),
+
+    ('Alan John Kwadwo Kyerematen', 
+     (SELECT party_id FROM Parties WHERE party_name = 'Independent Candidate Alan'), 
+     (SELECT * FROM OPENROWSET(BULK N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\img\flag_bearers\Alan.png', SINGLE_BLOB) AS Image)),
+
+    ('Christian Kwabena Andrews', 
+     (SELECT party_id FROM Parties WHERE party_name = 'Ghana Union Movement'), 
+     (SELECT * FROM OPENROWSET(BULK N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\img\flag_bearers\Andrews.png', SINGLE_BLOB) AS Image)),
+
+	 ('Daniel Augustus Lartey Jnr', 
+     (SELECT party_id FROM Parties WHERE party_name = 'Great Consolidated Popular Party'), 
+     (SELECT * FROM OPENROWSET(BULK N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\img\flag_bearers\Lartey.png', SINGLE_BLOB) AS Image)),
+
+    ('George Twum-Barima-Adu', 
+     (SELECT party_id FROM Parties WHERE party_name = 'Independent Candidate Twum'), 
+     (SELECT * FROM OPENROWSET(BULK N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\img\flag_bearers\Twum.png', SINGLE_BLOB) AS Image)),
+
+    ('Nana Kwame Bediako', 
+     (SELECT party_id FROM Parties WHERE party_name = 'Independent Candidate Bediako'), 
+     (SELECT * FROM OPENROWSET(BULK N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\img\flag_bearers\Bediako.png', SINGLE_BLOB) AS Image)),
+
+    ('Akua Donkor', 
+     (SELECT party_id FROM Parties WHERE party_name = 'Ghana Freedom Party'), 
+     (SELECT * FROM OPENROWSET(BULK N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\img\flag_bearers\Donkor.png', SINGLE_BLOB) AS Image)),
+
+    ('Hassan Abdulai Ayariga', 
+     (SELECT party_id FROM Parties WHERE party_name = 'All People’s Congress'), 
+     (SELECT * FROM OPENROWSET(BULK N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\img\flag_bearers\Ayariga.png', SINGLE_BLOB) AS Image)),
+
+    ('Kofi Akpaloo', 
+     (SELECT party_id FROM Parties WHERE party_name = 'Liberal Party of Ghana'), 
+     (SELECT * FROM OPENROWSET(BULK N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\img\flag_bearers\Akpaloo.png', SINGLE_BLOB) AS Image)),
+
+    ('Mohammed Frimpong', 
+     (SELECT party_id FROM Parties WHERE party_name = 'National Democratic Party'), 
+     (SELECT * FROM OPENROWSET(BULK N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\img\flag_bearers\Frimpong.png', SINGLE_BLOB) AS Image)),
+
+    ('Nana Akosua Frimpomaa', 
+     (SELECT party_id FROM Parties WHERE party_name = 'Convention People’s Party'), 
+     (SELECT * FROM OPENROWSET(BULK N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\img\flag_bearers\Frimpomaa.png', SINGLE_BLOB) AS Image)),
+
+    ('Kofi Koranteng', 
+     (SELECT party_id FROM Parties WHERE party_name = 'Independent Candidate Kofi'), 
+     (SELECT * FROM OPENROWSET(BULK N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\img\flag_bearers\Koranteng.png', SINGLE_BLOB) AS Image));
+```
+**Code Explanation**
+### Inserting Presidential Candidates' Names and Profile Photos
+
+This SQL code is used to insert the names, associated political parties, and profile images of presidential candidates into the `PresidentialCandidates` table. Below is a breakdown of the steps involved:
+
+#### Example: Inserting Mahamudu Bawumia
+
+**Candidate Name**: 
+   - `'Mahamudu Bawumia'` is inserted into the `candidate_name` column.
+
+**Party ID**:
+   - The `party_id` for Mahamudu Bawumia is fetched using a subquery:
+     ```sql
+     (SELECT party_id FROM Parties WHERE party_name = 'New Patriotic Party')
+     ```
+   - This subquery retrieves the `party_id` corresponding to the `'New Patriotic Party'` from the `Parties` table. The candidate is linked to this party.
+
+**Candidate Image**:
+   - The profile image for Mahamudu Bawumia is inserted as a binary object (BLOB) using the `OPENROWSET` function:
+     ```sql
+     (SELECT * FROM OPENROWSET(BULK N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\img\flag_bearers\Bawumia.png', SINGLE_BLOB) AS Image)
+     ```
+   - The image is read from the file path `C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\img\flag_bearers\Bawumia.png` on the server and inserted into the database.
+
+#### Repeated Structure for Other Presidential Candidates
+
+The same structure as shown for Mahamudu Bawumia is repeated for each of the other presidential candidates. For each candidate:
+
+- Their **name** is inserted into the `candidate_name` column.
+- Their **party ID** is retrieved using a subquery that finds the `party_id` from the `Parties` table.
+- Their **profile image** is inserted as a binary large object (BLOB) using the `OPENROWSET` function, which reads the image file from the server.
+
+**Summary**
+
+This method ensures:
+- **`Linking to Political Parties`**: Each candidate is linked to their respective political party through the `party_id` column, ensuring the correct association between candidates and their parties.
+- **`Efficient Image Storage`**: The profile image of each candidate is stored as a binary large object (BLOB), which allows for efficient storage of image data directly in the database without needing separate image hosting solutions.
+
+
+### 2. Inserting Party Names, Abbreviations, and Flags into the Parties Table
+
+This SQL code inserts data into the `Parties` table for various political parties and their associated information. Specifically, it inserts the following details:
+
+**`Party Name`**: The full name of the political party.
+**`Party Abbreviation`**: The abbreviated name or acronym of the political party.
+**`Party Flag`**: The party's flag image, which is stored as a binary large object (BLOB) using the `OPENROWSET` function.
+
+A screenshot of the SQL command I used to insert the data into the `parties Table`
+![ParliamentaryVotes Table SQL command](./images/insert_partynames_and_partyflags.png)
+
+An alt text you can copy and use.
+```sql
+INSERT INTO Parties (party_name, party_abbreviation, party_flag_image)
+VALUES ('New Patriotic Party', 'NPP',
+        (SELECT * FROM OPENROWSET(BULK N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\img\party_flags\NPP.png', SINGLE_BLOB) AS Image));
+
+INSERT INTO Parties (party_name, party_abbreviation, party_flag_image)
+VALUES ('National Democratic Congress', 'NDC',
+        (SELECT * FROM OPENROWSET(BULK N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\img\party_flags\NDC.png', SINGLE_BLOB) AS Image));
+
+INSERT INTO Parties (party_name, party_abbreviation, party_flag_image)
+VALUES ('Independent Candidate Alan', 'IND_ALAN',
+        (SELECT * FROM OPENROWSET(BULK N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\img\party_flags\ALAN_IND.png', SINGLE_BLOB) AS Image));
+
+INSERT INTO Parties (party_name, party_abbreviation, party_flag_image)
+VALUES ('Ghana Union Movement', 'GUM',
+        (SELECT * FROM OPENROWSET(BULK N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\img\party_flags\GUM.png', SINGLE_BLOB) AS Image));
+
+INSERT INTO Parties (party_name, party_abbreviation, party_flag_image)
+VALUES ('Great Consolidated Popular Party', 'GCPP',
+        (SELECT * FROM OPENROWSET(BULK N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\img\party_flags\GCPP.png', SINGLE_BLOB) AS Image));
+
+INSERT INTO Parties (party_name, party_abbreviation, party_flag_image)
+VALUES ('Independent Candidate Twum', 'IND_TWUM',
+        (SELECT * FROM OPENROWSET(BULK N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\img\party_flags\TWUM_IND.png', SINGLE_BLOB) AS Image));
+
+INSERT INTO Parties (party_name, party_abbreviation, party_flag_image)
+VALUES ('Independent Candidate Bediako', 'IND_BEDIAKO',
+        (SELECT * FROM OPENROWSET(BULK N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\img\party_flags\NANA_IND.png', SINGLE_BLOB) AS Image));
+
+INSERT INTO Parties (party_name, party_abbreviation, party_flag_image)
+VALUES ('Ghana Freedom Party', 'GFP',
+        (SELECT * FROM OPENROWSET(BULK N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\img\party_flags\GFP.png', SINGLE_BLOB) AS Image));
+
+INSERT INTO Parties (party_name, party_abbreviation, party_flag_image)
+VALUES ('All People’s Congress', 'APC',
+        (SELECT * FROM OPENROWSET(BULK N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\img\party_flags\APC.png', SINGLE_BLOB) AS Image));
+
+INSERT INTO Parties (party_name, party_abbreviation, party_flag_image)
+VALUES ('Liberal Party of Ghana', 'LPG',
+        (SELECT * FROM OPENROWSET(BULK N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\img\party_flags\LPG.png', SINGLE_BLOB) AS Image));
+
+INSERT INTO Parties (party_name, party_abbreviation, party_flag_image)
+VALUES ('National Democratic Party', 'NDP',
+        (SELECT * FROM OPENROWSET(BULK N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\img\party_flags\NDP.png', SINGLE_BLOB) AS Image));
+
+INSERT INTO Parties (party_name, party_abbreviation, party_flag_image)
+VALUES ('Convention People’s Party', 'CPP',
+        (SELECT * FROM OPENROWSET(BULK N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\img\party_flags\CPP.png', SINGLE_BLOB) AS Image));
+
+INSERT INTO Parties (party_name, party_abbreviation, party_flag_image)
+VALUES ('Independent Candidate Kofi', 'IND_KOFI',
+        (SELECT * FROM OPENROWSET(BULK N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\img\party_flags\KOFI_IND.png', SINGLE_BLOB) AS Image));
+```
+**Code Explanation**
+
+The structure of each `INSERT INTO` statement is similar for all parties:
+
+- **`Party Name`**: The name of the political party.
+- **`Party Abbreviation`**: A short version or acronym of the party's name.
+- **`Party Flag Image`**: The flag of the party, stored as a binary large object (BLOB) by using `OPENROWSET` to read the image file stored on the SQL server.
+
+**Summary**
+
+This method ensures:
+- **`Correct Party Information`**: Each political party is inserted with its full name, abbreviation, and flag image, allowing easy identification of parties.
+- **`Efficient Image Storage`**: The flag images are stored as BLOBs, ensuring that the images are stored directly within the database, making it easy to retrieve and display the flags when needed without relying on external file storage.
 
 
 ## Conclusion
