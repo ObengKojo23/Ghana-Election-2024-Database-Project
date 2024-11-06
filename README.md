@@ -1,18 +1,33 @@
-# Ghana Election Database Project
+# 🗳️ Ghana Election Database Project
 
 # Modelling of a Database in SMSS for the 2024 National Presidential and Parliamentary election of Ghana
 
-## Overview
+## Overview 🌍
 This project demonstrates the design and implementation of a fully normalized relational database for the Ghana 2024 elections. The database is modeled to store and organize data related to regions, constituencies, polling stations, political parties, candidates, and votes. The objective is to illustrate best practices in database design, specifically normalization, within SQL Server Management Studio (SSMS).
 
-## Key Objectives
+## Key Objectives 🔑
 - Model a normalized database for an election system.
 - Use SSMS to create efficient table structures that minimize redundancy.
 - Store data for regional hierarchies, candidate details, and voting results.
 - Integrate multimedia support to store images for political parties and candidates.
 
+## Tools and Technologies Used 🛠 
 
-## Database Creation
+- **GitHub**: For version control and collaboration on project files, including sharing codes and documentation.
+- **Photoshop**: For creating and editing images, including the design of any graphics or visuals used in the project.
+- **SQL Server Management Studio (SSMS)**: For building, managing and querying the election database.
+
+### How to Run This Project 🚀 
+
+1. **Clone the Repository**  
+   Run the following command to clone the repository to your local machine:
+   ```bash
+   git clone https://github.com/ObengKojo23/Ghana-Election-2024-Database-Project.git
+2. **Download SQL Server Management Studio (SSMS)**  
+You can download SQL Server Management Studio (SSMS) from the official Microsoft website: [Download SSMS](https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms).
+
+
+## Database Creation ⚙️
 Before creating tables, we need to set up a database for our project. In SSMS, use the following SQL command to create the database:
 
 A screenshot of the SQL command I used to create the database
@@ -36,7 +51,7 @@ The database is designed with full normalization in mind and the aim to reduce r
 - **Second Normal Form (2NF):** Removes partial dependencies, where non-key attributes depend on the entire primary key.
 - **Third Normal Form (3NF):** Eliminates transitive dependencies by making sure that all non-key attributes depend only on the primary key.
 
-## Database Tables
+## Database Tables 🗄️
 
 ### 1. Regions Table
 This table stores data about Ghana's regions, with each region assigned a unique regional ID (`region_id`).
@@ -464,7 +479,7 @@ Below are the detail explanation of the primary foreign key relationships, that 
    - **Foreign Key**: `parliamentary_candidate_id`
    - **Description**: Records votes for parliamentary candidates, associated with the `ParliamentaryCandidates` table.
 
-## Data Insertion
+## Data Insertion 🗃️
 
 ### 1. Inserting Presidential Candidates Names and Profile Images
 
