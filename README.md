@@ -17,6 +17,7 @@ This project demonstrates the design and implementation of a fully normalized re
 - **Photoshop**: For creating and editing images, including the design of any graphics or visuals used in the project.
 - **SQL Server Management Studio (SSMS)**: For building, managing and querying the election database.
 
+
 ### How to Run This Project 🚀 
 
 1. **Clone the Repository**  
