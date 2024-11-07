@@ -47,7 +47,7 @@ You can download SQL Server Management Studio (SSMS) from the official Microsoft
 
 # Steps
 
-## Database Creation ⚙️
+## 1. Database Creation ⚙️
 Launch the `SSMS` application and click on `New Query` to open the query editor window. 
 
 Use the following SQL command to create a `database`:
@@ -73,9 +73,9 @@ The database is designed with full normalization in mind and the aim to reduce r
 - **Second Normal Form (2NF):** Removes partial dependencies, where non-key attributes depend on the entire primary key.
 - **Third Normal Form (3NF):** Eliminates transitive dependencies by making sure that all non-key attributes depend only on the primary key.
 
-## Create Database Tables 🗄️
+## 2. Create Database Tables 🗄️
 
-### 1. Regions Table
+### 2.1 Regions Table
 This table stores data about Ghana's regions, with each region assigned a unique regional ID (`region_id`).
 
 A screenshot of the SQL command I used to create the `Regions Table`
@@ -115,7 +115,7 @@ This table design serves as a foundational part of the database, as each region 
 
 
 
-### 2. Constituencies Table
+### 2.2 Constituencies Table
 This table links constituencies to regions and includes information on voter populations.
 
 A screenshot of the SQL command I used to create the `Constituencies Table`
@@ -159,7 +159,7 @@ CREATE TABLE Constituencies (
 **Summary:**
 The `Constituencies` table organizes constituencies by assigning each a unique `constituency_id`, storing its name, associated region, and total voter count. This structure supports relationships with the `Regions` table and ensures efficient data organization.
 
-### 3. PollingStations Table
+### 2.3 PollingStations Table
 This table organizes polling stations within constituencies, with each station assigned a code.
 
 A screenshot of the SQL command I used to create the `PollingStations Table`
@@ -207,7 +207,7 @@ CREATE TABLE PollingStations (
 The `PollingStations` table organizes polling station voting data by assigning a unique ID, code, and name for each station, with a reference to its respective constituency. This structure supports relationships with the `Constituencies` table and ensures data consistency across tables.
 
 
-### 4. Parties Table
+### 2.4 Parties Table
 This table holds information on the 13 political parties, including a column for each party’s flag image or symbol of identity.
 
 A screenshot of the SQL command I used to create the `Parties Table`
@@ -250,7 +250,7 @@ CREATE TABLE Parties (
 **Summary:**
 The `Parties` table is structured to hold essential details about political parties, including unique identification, names, abbreviations, and images of their flags. This design facilitates easy retrieval and management of party information in relation to the election database.
 
-### 5. PresidentialCandidates Table
+### 2.5 PresidentialCandidates Table
 This table is dedicated to the 13 presidential candidates and will store their details and a profile picture for each candidate.
 
 A screenshot of the SQL command I used to create the `PresidentialCandidates Table`
@@ -299,7 +299,7 @@ The `PresidentialCandidates` table is structured to hold crucial information abo
 
 
 
-### 6. ParliamentaryCandidates Table
+### 2.6 ParliamentaryCandidates Table
 This table manages parliamentary candidates and links each candidate to their respective constituency.
 
 A screenshot of the SQL command I used to create the `ParliamentaryCandidates Table`
@@ -355,11 +355,11 @@ CREATE TABLE ParliamentaryCandidates (
 The `ParliamentaryCandidates` table is structured to hold essential information about parliamentary candidates, including unique identification, names, party affiliations, constituency representation, and images. This design facilitates efficient management and retrieval of candidate data within the election database.
 
 
-### 7. Votes Tables
+### 2.7 Votes Tables
 These tables track votes for each candidate within each polling station.
 
 
-#### PresidentialVotes Table
+#### 2.7.1 PresidentialVotes Table
 
 A screenshot of the SQL command I used to create the `PresidentialVotes Table`
 ![Regions Table SQL command](./images/presidential_votes.png)
@@ -408,7 +408,7 @@ CREATE TABLE PresidentialVotes (
 The `PresidentialVotes` table is structured to efficiently manage and record voting results for presidential candidates, including unique identification, associated polling stations, candidate references, and the number of votes received. This design supports accurate tracking of electoral results within the election database.
 
 
-#### ParliamentaryVotes Table
+#### 2.7.2 ParliamentaryVotes Table
 A screenshot of the SQL command I used to create the `ParliamentaryVotes Table`
 ![ParliamentaryVotes Table SQL command](./images/parliamentary_votes.png)
 
@@ -455,7 +455,7 @@ CREATE TABLE ParliamentaryVotes (
 **Summary:**
 The `ParliamentaryVotes` table is structured to effectively manage and record voting results for parliamentary candidates, including unique identification, associated polling stations, candidate references, and the number of votes received. This design facilitates accurate tracking of electoral results within the election database.
 
-## Database Diagramming 
+## 3. Database Diagramming 
 This structure provides a clear view of how data entities relate and interact within the `GhanaElections2024` database.
 
 A screenshot of the Database Diagram showing the relationship between all tables.
@@ -503,9 +503,9 @@ Below are the detail explanation of the primary-foreign key relationships, that 
 
 
 
-## Data Insertion 🗃️
+## 4. Data Insertion 🗃️
 
-### 1. Inserting Presidential Candidates Names and Profile Images
+### 4.1 Inserting Presidential Candidates Names and Profile Images
 
 The following SQL code inserts data into the `PresidentialCandidates` table, which stores details of each presidential candidate, including their party affiliation and profile image. Each candidate is associated with a political party, and images are stored in binary format.
 
@@ -605,7 +605,7 @@ This method ensures:
 - **`Efficient Image Storage`**: The profile image of each candidate is stored as a binary large object (BLOB), which allows for efficient storage of image data directly in the database without needing separate image hosting solutions.
 
 
-### 2. Inserting Party Names, Abbreviations, and Flags into the Parties Table
+### 4.2 Inserting Party Names, Abbreviations, and Flags into the Parties Table
 
 This SQL code inserts data into the `Parties` table for various political parties and their associated information. Specifically, it inserts the following details:
 
