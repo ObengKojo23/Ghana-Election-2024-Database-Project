@@ -1,6 +1,6 @@
-# 🗳️ Ghana Election Database Project
+# 🗳️ Ghana Election 2024 Database Project
 
-# Modelling of a Database in SMSS for the 2024 National Presidential and Parliamentary election of Ghana
+## Modelling of a Database in SQL Server Management Studio (SSMS)🖥️ for the 2024 Presidential and Parliamentary Election in Ghana
 
 ## Overview 🌍
 This project demonstrates the design and implementation of a fully normalized relational database for the Ghana 2024 elections. The database is modeled to store and organize data related to regions, constituencies, polling stations, political parties, candidates, and votes. The objective is to illustrate best practices in database design, specifically normalization, within SQL Server Management Studio (SSMS).
@@ -25,10 +25,11 @@ This project demonstrates the design and implementation of a fully normalized re
    git clone https://github.com/ObengKojo23/Ghana-Election-2024-Database-Project.git
 2. **Download SQL Server Management Studio (SSMS)**  
 You can download SQL Server Management Studio (SSMS) from the official Microsoft website: [Download SSMS](https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms).
+3. Launch SSMS application and follow along to achieve similar outcome
 
 
 ## Database Creation ⚙️
-Before creating tables, we need to set up a database for our project. In SSMS, use the following SQL command to create the database:
+Before creating all our tables, we need to set up a `database` for our project. We need to click on new query in SSMS to open the query editor window. We use the following SQL command to create a `database`:
 
 A screenshot of the SQL command I used to create the database
 ![SQL to create the Database](./images/create_database.png)
@@ -72,7 +73,7 @@ CREATE TABLE Regions (
 
 **`CREATE TABLE Regions`:**
 - This line creates a table named `Regions`.
-- The table will hold information related to Ghana's regions, such as unique identifiers and names.
+- The table will hold information related to Ghana's regions, such as unique identifier and region names.
 
 **`region_id INT PRIMARY KEY IDENTITY(1,1)`:**
 - `region_id`: This column will serve as the unique identifier for each region.
@@ -186,7 +187,7 @@ The `PollingStations` table organizes polling station voting data by assigning a
 
 
 ### 4. Parties Table
-This table holds information on political parties, including a column for each party’s flag image.
+This table holds information on the 13 political parties, including a column for each party’s flag image or symbol of identity.
 
 A screenshot of the SQL command I used to create the `Parties Table`
 ![Regions Table SQL command](./images/parties.png)
@@ -229,7 +230,7 @@ CREATE TABLE Parties (
 The `Parties` table is structured to hold essential details about political parties, including unique identification, names, abbreviations, and images of their flags. This design facilitates easy retrieval and management of party information in relation to the election database.
 
 ### 5. PresidentialCandidates Table
-This table is dedicated to presidential candidates, storing details and an image for each candidate.
+This table is dedicated to the 13 presidential candidates and will store their details and a profile picture for each candidate.
 
 A screenshot of the SQL command I used to create the `PresidentialCandidates Table`
 ![Regions Table SQL command](./images/presidential_candidates.png)
@@ -278,7 +279,7 @@ The `PresidentialCandidates` table is structured to hold crucial information abo
 
 
 ### 6. ParliamentaryCandidates Table
-This table manages parliamentary candidates, with each candidate linked to their constituency.
+This table manages parliamentary candidates and links each candidate to their respective constituency.
 
 A screenshot of the SQL command I used to create the `ParliamentaryCandidates Table`
 ![Regions Table SQL command](./images/parliamentary_candidates.png)
@@ -434,12 +435,12 @@ CREATE TABLE ParliamentaryVotes (
 The `ParliamentaryVotes` table is structured to effectively manage and record voting results for parliamentary candidates, including unique identification, associated polling stations, candidate references, and the number of votes received. This design facilitates accurate tracking of electoral results within the election database.
 
 ## Database Diagramming 
-This structure provides a clear view of how data entities relate and interact within the Ghana Elections 2024 database.
+This structure provides a clear view of how data entities relate and interact within the `GhanaElections2024` database.
 
 A screenshot of the Database Diagram showing the relationship between all tables.
 ![Database Diagram image](./images/database_diagram.png)
 
-Below are the detail explanation of the primary foreign key relationships, that was established in a database diagram in SMSS. Each relationship indicates a foreign key connection between tables and ensures that referential integrity is maintained.
+Below are the detail explanation of the primary-foreign key relationships, that was established in a database diagram in SSMS. Each relationship indicates a foreign key connection between tables and ensures that referential integrity is maintained.
 
 ### Foreign Key Connections
 
@@ -478,6 +479,8 @@ Below are the detail explanation of the primary foreign key relationships, that 
 9. **ParliamentaryVotes → ParliamentaryCandidates**
    - **Foreign Key**: `parliamentary_candidate_id`
    - **Description**: Records votes for parliamentary candidates, associated with the `ParliamentaryCandidates` table.
+
+
 
 ## Data Insertion 🗃️
 
@@ -548,21 +551,22 @@ VALUES
 **Code Explanation**
 ### Inserting Presidential Candidates' Names and Profile Photos
 
-This SQL code is used to insert the names, associated political parties, and profile images of presidential candidates into the `PresidentialCandidates` table. Below is a breakdown of the steps involved:
+Below is a breakdown of the steps involved:
 
 #### Example: Inserting Mahamudu Bawumia
+**Code Explanation**
 
-**Candidate Name**: 
+**`Candidate Name`**: 
    - `'Mahamudu Bawumia'` is inserted into the `candidate_name` column.
 
-**Party ID**:
+**`Party ID`**:
    - The `party_id` for Mahamudu Bawumia is fetched using a subquery:
      ```sql
      (SELECT party_id FROM Parties WHERE party_name = 'New Patriotic Party')
      ```
    - This subquery retrieves the `party_id` corresponding to the `'New Patriotic Party'` from the `Parties` table. The candidate is linked to this party.
 
-**Candidate Image**:
+**`Candidate Image`**:
    - The profile image for Mahamudu Bawumia is inserted as a binary object (BLOB) using the `OPENROWSET` function:
      ```sql
      (SELECT * FROM OPENROWSET(BULK N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\img\flag_bearers\Bawumia.png', SINGLE_BLOB) AS Image)
