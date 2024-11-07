@@ -73,7 +73,7 @@ The database is designed with full normalization in mind and the aim to reduce r
 - **Second Normal Form (2NF):** Removes partial dependencies, where non-key attributes depend on the entire primary key.
 - **Third Normal Form (3NF):** Eliminates transitive dependencies by making sure that all non-key attributes depend only on the primary key.
 
-## Database Tables 🗄️
+## Create Database Tables 🗄️
 
 ### 1. Regions Table
 This table stores data about Ghana's regions, with each region assigned a unique regional ID (`region_id`).
