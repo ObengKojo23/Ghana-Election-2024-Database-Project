@@ -12,6 +12,20 @@ This project demonstrates the design and implementation of a fully normalized re
 - Store data for regional hierarchies, candidate details, and voting results.
 - Integrate multimedia support to store images for political parties and candidates.
 
+## Skills Learnt 🧠
+
+- **Database Design** – Structured databases with fully normalized tables for efficient data organization.
+- **Data Modeling** – Created logical and physical models for relational databases, including ER diagrams.
+- **SQL Querying** – Wrote SQL commands for creating tables, inserting data, and linking tables.
+- **Data Normalization** – Applied principles to eliminate redundancy and ensure consistency in tables.
+- **Relational Database Management** – Structured relationships between tables to maintain data integrity.
+- **Binary Large Object (BLOB) Storage** – Stored images in SQL databases.
+- **Database Integrity and Referential Constraints** – Defined primary and foreign keys for data consistency.
+- **Performance Optimization** – Structured data for efficient querying and storage.
+- **Project Documentation** – Wrote clear and structured documentation for database usage.
+- **Data Handling and Importing** – Utilized `OPENROWSET` and similar functions for importing external files.
+- **Database Troubleshooting and Error Handling** – Debugged common SQL command issues and error messages.
+  
 ## Tools and Technologies Used 🛠 
 
 - **GitHub**: For version control and collaboration on project files, including sharing codes and documentation.
