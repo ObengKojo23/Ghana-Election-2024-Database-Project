@@ -12,7 +12,7 @@ This project demonstrates the design and implementation of a fully normalized re
 - Store data for regional hierarchies, candidate details, and voting results.
 - Integrate multimedia support to store images for political parties and candidates.
 
-## Skills Learnt 🧠
+## Skills Learned 🧠
 
 - **Database Design** – Structured databases with fully normalized tables for efficient data organization.
 - **Data Modeling** – Created logical and physical models for relational databases, including ER diagrams.
@@ -45,6 +45,7 @@ You can download SQL Server Management Studio (SSMS) from the official Microsoft
 
 3. Launch SSMS application and follow along to achieve similar outcome
 
+### Step
 
 ## Database Creation ⚙️
 Before creating all our tables, we need to set up a `database` for our project. We need to click on new query in SSMS to open the query editor window. We use the following SQL command to create a `database`:
