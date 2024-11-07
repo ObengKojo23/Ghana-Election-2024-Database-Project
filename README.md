@@ -670,3 +670,10 @@ This method ensures:
 
 ## Conclusion
 This project provides a comprehensive example of an election database system using SSMS, covering core concepts of database normalization, efficient data structure design, and SQL implementation. This setup aims to create a robust database that serves as both an educational tool and a scalable template for real-world election databases.
+
+
+### References
+1. Original Banner image sourced from [FreePik](https://www.freepik.com) and redesigned by ObengKojo.
+2. Refer to the [Microsoft Learn documentation](https://learn.microsoft.com/) to learn more about databases.
+3. To download SQL Server Management Studio (SSMS), visit the [official download page](https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16).
+
