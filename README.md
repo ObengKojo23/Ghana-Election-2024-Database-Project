@@ -552,10 +552,6 @@ VALUES
      (SELECT * FROM OPENROWSET(BULK N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\img\flag_bearers\Koranteng.png', SINGLE_BLOB) AS Image));
 ```
 **Code Explanation**
-### Inserting Presidential Candidates' Names and Profile Photos
-
-Below is a breakdown of the steps involved:
-
 #### Example: Inserting Mahamudu Bawumia
 **Code Explanation**
 
