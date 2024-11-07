@@ -45,7 +45,7 @@ You can download SQL Server Management Studio (SSMS) from the official Microsoft
 
 3. Launch SSMS application and follow along to achieve similar outcome
 
-### Step
+# Steps
 
 ## Database Creation ⚙️
 Before creating all our tables, we need to set up a `database` for our project. We need to click on new query in SSMS to open the query editor window. We use the following SQL command to create a `database`:
