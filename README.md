@@ -24,6 +24,7 @@ This project demonstrates the design and implementation of a fully normalized re
    Run the following command to clone the repository to your local machine:
    ```bash
    git clone https://github.com/ObengKojo23/Ghana-Election-2024-Database-Project.git
+   
 2. **Download SQL Server Management Studio (SSMS)**  
 You can download SQL Server Management Studio (SSMS) from the official Microsoft website: [Download SSMS](https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms).
 3. Launch SSMS application and follow along to achieve similar outcome
