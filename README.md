@@ -18,7 +18,7 @@ This project demonstrates the design and implementation of a fully normalized re
 - **SQL Server Management Studio (SSMS)**: For building, managing and querying the election database.
 
 
-### How to Run This Project 🚀 
+## How to Run This Project 🚀 
 
 1. **Clone the Repository**  
    Run the following command to clone the repository to your local machine:
