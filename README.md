@@ -48,7 +48,9 @@ You can download SQL Server Management Studio (SSMS) from the official Microsoft
 # Steps
 
 ## Database Creation ⚙️
-Before creating all our tables, we need to set up a `database` for our project. We need to click on new query in SSMS to open the query editor window. We use the following SQL command to create a `database`:
+Launch the `SSMS` application and click on `New Query` to open the query editor window. 
+
+Use the following SQL command to create a `database`:
 
 A screenshot of the SQL command I used to create the database
 ![SQL to create the Database](./images/create_database.png)
