@@ -1,3 +1,4 @@
+![Election Banner Image](./banner_image.png)
 # 🗳️ Ghana Election 2024 Database Project 🗳️
 
 ## Modelling of a Database in SQL Server Management Studio (SSMS)🖥️ for the 2024 Presidential and Parliamentary Election in Ghana
