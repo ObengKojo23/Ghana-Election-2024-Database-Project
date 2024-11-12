@@ -694,3 +694,10 @@ This project provides a comprehensive example of an election database system usi
 2. Refer to the [Microsoft Learn documentation](https://learn.microsoft.com/) to learn more about databases.
 3. To download SQL Server Management Studio (SSMS), visit the [official download page](https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16).
 
+## Contact
+For any questions or suggestions, feel free to reach out:
+- **LinkedIn**: [LinkedIn Page](https://www.linkedin.com/in/obengafari)
+- **GitHub**: [GitHub page](https://github.com/ObengKojo23)
+- **YouTube**: [My YouTube tutorials](https://youtube.com/@obengkojo)
+---
+
