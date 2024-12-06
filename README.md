@@ -1,7 +1,7 @@
 ![Election Banner Image](./images/banner_image.png)
 # Ghana Election 2024 Database Project
 
-### Modelling of a Database in SQL Server Management Studio (SSMS)🖥️ for the 2024 Presidential and Parliamentary Election in Ghana
+### Modelling a Database in SQL Server Management Studio (SSMS)🖥️ for the 2024 Presidential and Parliamentary Election in Ghana
 
 ## Overview 🌍
 This project demonstrates the design and implementation of a fully normalized relational database for the Ghana 2024 elections. The database is modeled to store and organize data related to regions, constituencies, polling stations, political parties, candidates, and votes. The objective is to illustrate best practices in database design, specifically normalization, within SQL Server Management Studio (SSMS).
