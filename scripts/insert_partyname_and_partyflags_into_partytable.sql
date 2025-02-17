@@ -1,4 +1,17 @@
--- Insert Party Names, Party Abbreviations and Party /Flags into the Parties table	
+-- ====================================================================================
+-- Script to Insert Party Names, Abbreviations, and Party Flags into the Parties Table
+-- ====================================================================================
+
+-- This script inserts records for various political parties
+-- including their names, abbreviations, and corresponding 
+-- party flag images. The images are imported as BLOBs 
+-- using the OPENROWSET function.
+
+-- Ensure that:
+-- 1. The 'Parties' table exists with appropriate columns.
+-- 2. The file paths to the images are correct.
+-- 3. The SQL Server has 'Ad Hoc Distributed Queries' enabled.
+	
 
 	-- Insert for New Patriotic Party
 INSERT INTO Parties (party_name, party_abbreviation, party_flag_image)
@@ -40,9 +53,9 @@ INSERT INTO Parties (party_name, party_abbreviation, party_flag_image)
 VALUES ('Ghana Freedom Party', 'GFP',
         (SELECT * FROM OPENROWSET(BULK N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\img\party_flags\GFP.png', SINGLE_BLOB) AS Image));
 
--- Insert for All People’s Congress
+-- Insert for All Peopleâ€™s Congress
 INSERT INTO Parties (party_name, party_abbreviation, party_flag_image)
-VALUES ('All People’s Congress', 'APC',
+VALUES ('All Peopleâ€™s Congress', 'APC',
         (SELECT * FROM OPENROWSET(BULK N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\img\party_flags\APC.png', SINGLE_BLOB) AS Image));
 
 -- Insert for Liberal Party of Ghana
@@ -55,9 +68,9 @@ INSERT INTO Parties (party_name, party_abbreviation, party_flag_image)
 VALUES ('National Democratic Party', 'NDP',
         (SELECT * FROM OPENROWSET(BULK N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\img\party_flags\NDP.png', SINGLE_BLOB) AS Image));
 
--- Insert for Convention People’s Party
+-- Insert for Convention Peopleâ€™s Party
 INSERT INTO Parties (party_name, party_abbreviation, party_flag_image)
-VALUES ('Convention People’s Party', 'CPP',
+VALUES ('Convention Peopleâ€™s Party', 'CPP',
         (SELECT * FROM OPENROWSET(BULK N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\img\party_flags\CPP.png', SINGLE_BLOB) AS Image));
 
 -- Insert for Independent Candidate (Kofi Koranteng)
