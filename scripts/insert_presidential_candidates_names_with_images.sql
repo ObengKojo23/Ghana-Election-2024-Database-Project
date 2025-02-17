@@ -1,4 +1,23 @@
--- Insert Presidential Candidates' names and Profile Photos
+-- =============================================
+-- Script to Insert Presidential Candidates' Names and Profile Photos
+-- =============================================
+-- This script inserts the names and profile photos of all presidential candidates
+-- into the "PresidentialCandidates" table. It uses the OPENROWSET function to load
+-- images from the specified file paths and associates each candidate with their 
+-- respective political party.
+--
+-- Requirements:
+-- 1. Ensure the "Parties" table is populated with the relevant political parties.
+-- 2. Verify that the image files exist in the specified directory.
+-- 3. The SQL Server must have "Ad Hoc Distributed Queries" enabled to use OPENROWSET.
+--    You may need to run:
+--       EXEC sp_configure 'show advanced options', 1;
+--       RECONFIGURE;
+--       EXEC sp_configure 'Ad Hoc Distributed Queries', 1;
+--       RECONFIGURE;
+--
+-- Note: If an image file is missing, consider using NULL instead of OPENROWSET.
+-- =============================================
 
 
 INSERT INTO PresidentialCandidates (candidate_name, party_id, candidate_image)
@@ -45,7 +64,7 @@ VALUES
 
 	 -- Insert for Ayariga
     ('Hassan Abdulai Ayariga', 
-     (SELECT party_id FROM Parties WHERE party_name = 'All People’s Congress'), 
+     (SELECT party_id FROM Parties WHERE party_name = 'All Peopleâ€™s Congress'), 
      (SELECT * FROM OPENROWSET(BULK N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\img\flag_bearers\Ayariga.png', SINGLE_BLOB) AS Image)),
 
 	 -- Insert for Apkaloo
@@ -60,7 +79,7 @@ VALUES
 
 	 -- Insert for Frimpomaa
     ('Nana Akosua Frimpomaa', 
-     (SELECT party_id FROM Parties WHERE party_name = 'Convention People’s Party'), 
+     (SELECT party_id FROM Parties WHERE party_name = 'Convention Peopleâ€™s Party'), 
      (SELECT * FROM OPENROWSET(BULK N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\img\flag_bearers\Frimpomaa.png', SINGLE_BLOB) AS Image)),
 
 	 -- Insert for Koranteng
