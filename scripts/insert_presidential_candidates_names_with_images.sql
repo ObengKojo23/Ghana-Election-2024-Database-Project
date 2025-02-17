@@ -1,6 +1,6 @@
--- =============================================
+-- ===========================================================================
 -- Script to Insert Presidential Candidates' Names and Profile Photos
--- =============================================
+-- ===========================================================================
 -- This script inserts the names and profile photos of all presidential candidates
 -- into the "PresidentialCandidates" table. It uses the OPENROWSET function to load
 -- images from the specified file paths and associates each candidate with their 
@@ -17,7 +17,7 @@
 --       RECONFIGURE;
 --
 -- Note: If an image file is missing, consider using NULL instead of OPENROWSET.
--- =============================================
+-- ==============================================================================
 
 
 INSERT INTO PresidentialCandidates (candidate_name, party_id, candidate_image)
