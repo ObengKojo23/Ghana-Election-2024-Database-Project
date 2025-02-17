@@ -1,3 +1,24 @@
+-- ==========================================================
+-- Ghana Elections 2024 Database Schema
+-- ==========================================================
+-- This SQL script defines the database structure for managing election data for the Ghana Elections 2024. It includes tables 
+-- for regions, constituencies, polling stations, political parties, candidates, and vote counts. The schema ensures 
+-- referential integrity and facilitates efficient data storage and retrieval.
+--
+-- =================== Schema Overview =======================
+-- 1. Regions Table: Stores the names of administrative regions.
+-- 2. Constituencies Table: Contains constituencies linked to their respective regions, with total voter counts.
+-- 3. Polling Stations Table: Manages polling stations within constituencies.
+-- 4. Parties Table: Stores political party details, including names, abbreviations, and flag images.
+-- 5. Presidential Candidates Table: Contains presidential candidates, their party affiliations, and candidate images.
+-- 6. Parliamentary Candidates Table: Stores parliamentary candidates, their constituencies, party affiliations, and candidate images.
+-- 7. Presidential Votes Table: Records presidential election votes per polling station.
+-- 8. Parliamentary Votes Table: Tracks parliamentary election votes at the polling station level.
+--
+-- This structured approach ensures comprehensive election data management, supporting analytics and reporting.
+-- ==========================================================
+
+
 -- Create the database
 CREATE DATABASE GhanaElections2024;
 
